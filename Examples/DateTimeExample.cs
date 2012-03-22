@@ -38,7 +38,42 @@ namespace Examples
             Assert.That(tenMinute.Milliseconds, Is.EqualTo(0));
         }
 
+        [Test]
+        public void TimeSpan_TotalMilliseconds_Convert_Its_Value_To_Milliseconds()
+        {
+            var fiveSeconds = TimeSpan.FromSeconds(5);
 
+            Assert.That(fiveSeconds.TotalMilliseconds, Is.EqualTo(5000d));
+        }
+
+        [Test]
+        public void TimeSpan_Overrides_Plus_Operator()
+        {
+            var fiveSeconds = TimeSpan.FromSeconds(5);
+            var halfAMinute = TimeSpan.FromMinutes(.5);
+
+            Assert.That(TimeSpan.FromMilliseconds(35000), Is.EqualTo(fiveSeconds + halfAMinute));
+        }
+
+        [Test]
+        public void Time_Can_Be_Converted_To_Local_Or_Universal_Using_Os_Default_Time_Zone()
+        {
+            var jonsTime = new DateTime(2011, 4, 1, 21, 24, 0, DateTimeKind.Local);
+            var robsTime = new DateTime(2011, 4, 1, 10, 24, 0, DateTimeKind.Local);
+            var utcTime = new DateTime(2011, 4, 1, 20, 24, 0, DateTimeKind.Utc);
+
+            Assert.That(jonsTime.ToUniversalTime(), Is.EqualTo(utcTime));
+            Assert.That(utcTime.ToLocalTime(), Is.EqualTo(jonsTime));
+        }
+
+        [Test]
+        public void DateTime_Is_Value_Type_Immutable_And_Compared_By_Its_Value()
+        {
+            var jonsTime = new DateTime(2011, 4, 1, 21, 24, 0, DateTimeKind.Local);
+            var bedTime = jonsTime + TimeSpan.FromHours(2);
+
+            Assert.That(bedTime, Is.EqualTo(new DateTime(2011, 4, 1, 23, 24, 0, DateTimeKind.Local)));
+        }
 
     }
 }
