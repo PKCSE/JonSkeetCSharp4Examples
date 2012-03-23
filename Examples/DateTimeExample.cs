@@ -92,5 +92,14 @@ namespace Examples
 
             Assert.That(jonsTime, Is.EqualTo(robsTime));
         }
+
+        [Test]
+        public void TimeZoneInfo_Knows_Your_Daylight_Saving_Change()
+        {
+            var zone = TimeZoneInfo.Local;
+
+            Assert.That(zone.GetUtcOffset(new DateTime(2011, 3, 27, 0, 0, 0)), Is.EqualTo(TimeSpan.FromHours(0)));
+            Assert.That(zone.GetUtcOffset(new DateTime(2011, 3, 27, 2, 0, 0)), Is.EqualTo(TimeSpan.FromHours(1)));
+        }
     }
 }
