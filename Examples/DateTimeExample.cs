@@ -75,5 +75,22 @@ namespace Examples
             Assert.That(bedTime, Is.EqualTo(new DateTime(2011, 4, 1, 23, 24, 0, DateTimeKind.Local)));
         }
 
+        [Test]
+        public void DateTimeOffset_Can_Specifity_Your_Local_Time_From_Utc_Point_Of_View()
+        {
+            var jonsTime = new DateTimeOffset(2011, 4, 1, 21, 24, 0, TimeSpan.FromHours(1));
+            var localTime = new DateTime(2011, 4, 1, 20, 24, 0);
+            
+            Assert.That(jonsTime.ToUniversalTime().Hour, Is.EqualTo(localTime.Hour));
+        }
+
+        [Test]
+        public void DateTimeOffset_Can_Represent_The_Same_Time_In_Different_Time_Zone()
+        {
+            var jonsTime = new DateTimeOffset(2011, 4, 1, 21, 24, 0, TimeSpan.FromHours(1));
+            var robsTime = new DateTimeOffset(2011, 4, 1, 10, 24, 0, TimeSpan.FromHours(-10));
+
+            Assert.That(jonsTime, Is.EqualTo(robsTime));
+        }
     }
 }
