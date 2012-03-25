@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControlFlowExample.cs" />
     <Compile Include="CultureExample.cs" />
     <Compile Include="DateTimeExample.cs" />
     <Compile Include="EncodingExample.cs" />
