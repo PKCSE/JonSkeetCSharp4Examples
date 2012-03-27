@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArrayExample.cs" />
+    <Compile Include="CollectionsExample.cs" />
     <Compile Include="ControlFlowExample.cs" />
     <Compile Include="CultureExample.cs" />
     <Compile Include="DateTimeExample.cs" />
