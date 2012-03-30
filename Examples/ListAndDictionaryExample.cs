@@ -44,5 +44,34 @@ namespace Examples
                 Console.WriteLine("{0}: {1}", entry.Key, entry.Value);
             }
         }
+
+        [Test]
+        public void Dictionary_Gets_Value_By_Key()
+        {
+            var map = new Dictionary<string, int>();
+            map.Add("foo", 10);
+
+            Assert.That(map["foo"], Is.EqualTo(10));
+        }
+
+        [Test]
+        public void HashCode_Is_A_Numerical_Representation_Of_Variable_Length_String()
+        {
+            int code = "a".GetHashCode();
+
+            Assert.That(code, Is.EqualTo(372029373));
+        }
+
+        [Test]
+        public void Dictionarh_Can_Be_Initialised_On_Declaration()
+        {
+            var map = new Dictionary<string, int>
+                          {
+                              {"Andy", 1},
+                              {"Sue", 2}
+                          };
+
+            Assert.That(map["Andy"], Is.EqualTo(1));
+        }
     }
 }
