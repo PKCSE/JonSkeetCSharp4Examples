@@ -48,6 +48,7 @@
     <Compile Include="ControlFlowExample.cs" />
     <Compile Include="CultureExample.cs" />
     <Compile Include="DateTimeExample.cs" />
+    <Compile Include="DelegateExample.cs" />
     <Compile Include="EncodingExample.cs" />
     <Compile Include="InheritanceExample.cs" />
     <Compile Include="InterfaceExample.cs" />
