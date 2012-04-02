@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnonymousFunctionsExample.cs" />
     <Compile Include="ArrayExample.cs" />
     <Compile Include="CollectionsExample.cs" />
     <Compile Include="ControlFlowExample.cs" />
