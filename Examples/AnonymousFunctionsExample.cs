@@ -120,7 +120,7 @@ namespace Examples
             {
                 Console.WriteLine(value);
             }
-            Console.WriteLine("Total calls: {0}", calls);
+            Console.WriteLine("Total  calls: {0}", calls);
 
         }
 
@@ -155,5 +155,41 @@ namespace Examples
             Console.WriteLine(compiled.Invoke(5));
         }
 
+        [Test]
+        public void Action_Will_Keep_Variable_Not_Value()
+        {
+            var words = new List<string>() {"Danger", "Will", "Robinson"};
+            var actions = new List<Action>();
+
+            foreach(string word in words)
+            {
+                actions.Add(() => Console.WriteLine(word));
+            }
+
+            foreach (var action in actions)
+            {
+                action();
+            }
+        }
+
+        [Test]
+        public void Action_Will_Keep_Valuel_With_Local_Variable()
+        {
+            var words = new List<string>() {"Danger", "Will", "Robinson"};
+            var actions = new List<Action>();
+
+            foreach(string word in words)
+            {
+                string copy = word;
+                actions.Add(() => Console.WriteLine(copy));
+            }
+
+            foreach (var action in actions)
+            {
+                action();
+            }
+        }
+
     }
+
 }
