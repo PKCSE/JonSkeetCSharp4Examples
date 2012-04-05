@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnonymousFunctionsExample.cs" />
+    <Compile Include="AnonymousTypesExample.cs" />
     <Compile Include="ArrayExample.cs" />
     <Compile Include="CollectionsExample.cs" />
     <Compile Include="ControlFlowExample.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="DateTimeExample.cs" />
     <Compile Include="DelegateExample.cs" />
     <Compile Include="EncodingExample.cs" />
+    <Compile Include="ExtensionMethodExamples.cs" />
     <Compile Include="InheritanceExample.cs" />
     <Compile Include="InterfaceExample.cs" />
     <Compile Include="ListAndDictionaryExample.cs" />
