@@ -30,11 +30,42 @@ namespace Examples
                 }
             }
         }
+
+        [Test]
+        public void Linq_With_Custom_Extension_Method()
+        {
+            IEnumerable<string> names = new[] {"Holly", "Rob", "Jon", "Tom", "William"};
+
+            var query1 = names.CWhere(x => !x.EndsWith("m")).CSelect(x => new { UpperName = x.ToUpper(), NameLength = x.Length });
+            foreach (var result in query1) { Console.WriteLine(result); }
+
+            var query2 = from x in names
+                         where !x.EndsWith("m")
+                         select new {UpperName = x.ToUpper(), NameLength = x.Length};
+            foreach (var result in query2) { Console.WriteLine(result); }
+
+        }
+
+        [Test]
+        public void DSL_Readable_DateTime_With_Extension_Method()
+        {  
+            var birthday = 19.June(1976);
+
+            Assert.That(birthday, Is.EqualTo(new DateTime(1976, 6, 19)));
+        }
     }
+
+    
 
     public static class MasteringEnumerable
     {
-        public static IEnumerable<TResult> Select<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
+        public static DateTime June(this int day, int year)
+        {
+            return new DateTime(year, 6, day);
+        }
+
+
+        public static IEnumerable<TResult> CSelect<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
         {
             foreach (TSource item in source)
             {
@@ -42,11 +73,11 @@ namespace Examples
             }
         }
 
-        public static IEnumerable<TSource> Where<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
+        public static IEnumerable<TSource> CWhere<TSource>(this IEnumerable<TSource> source, Func<TSource, bool> predicate)
         {
             foreach (TSource item in source)
             {
-                if (predicate(item))
+                if (predicate(item)) 
                 {
                     yield return item;
                 }
