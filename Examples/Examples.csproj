@@ -59,6 +59,7 @@
     <Compile Include="ListAndDictionaryExample.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegularExpressionTest.cs" />
+    <Compile Include="VarianceExamples.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
