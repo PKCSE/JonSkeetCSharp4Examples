@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using NUnit.Framework;
 using System.Text.RegularExpressions;
+using System.Linq.Expressions;
+using System.IO;
 
 namespace Examples
 {
@@ -43,7 +44,25 @@ namespace Examples
                 }
             }
 
+        }
 
+        [Test]
+        public void Join()
+        {
+            var lengths = new List<int> {15, 10, 13, 14};
+            var query = from line in _names
+                        join length in lengths on line.Length equals length
+                        where line.StartsWith("T")
+                        select new
+                                   {
+                                       Name = line.ToUpper(),
+                                       DoubleLength = length * 2
+                                   };
+
+            foreach (var value in query)
+            {
+                Console.WriteLine(value);
+            }
         }
 
         [Test]
@@ -67,8 +86,37 @@ namespace Examples
                     Console.WriteLine("  {0}", name);
                 }
             }
+        }
 
+        [Test]
+        public void LookUp()
+        {
+            var firstLetters = _names.ToLookup(name => name[0]);
 
+            foreach (var letter in firstLetters)
+            {
+                Console.WriteLine(letter.Key);
+            }
+            
+        }
+
+        [Test]
+        public void Expression_Code_As_Data()
+        {
+            Func<string, bool> lengthFilter = text => text.Length < 10;
+            Expression<Func<string, bool>> lengthFilter2 = text => text.Length < 10;
+
+            Console.WriteLine(lengthFilter);
+            Console.WriteLine(lengthFilter2);
+        }
+
+        [Test]
+        public void Handle_Files_With_Linq()
+        {
+            var lines = from file in Directory.GetFiles("*.log")
+                        from line in File.ReadAllLines(file)
+                        where line.Contains("ERROR")
+                        select line.Substring(10);
         }
     }
 }
