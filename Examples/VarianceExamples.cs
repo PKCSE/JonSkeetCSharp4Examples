@@ -17,9 +17,70 @@ namespace Examples
         T GiveMeFoo();
     }
 
+    public abstract class Shape
+    {
+        public abstract double Area { get; }
+    }
+
+    public class Circle : Shape
+    {
+        private readonly double _radius;
+        public Circle(double radius)
+        {
+            _radius = radius;
+        }
+
+        public override double Area
+        {
+            get { return Math.PI*_radius*_radius; }
+        }
+    }
+
+    public class Square : Shape
+    {
+        private readonly double _side;
+        public Square(double side)
+        {
+            _side = side;
+        }
+
+        public override double Area
+        {
+            get { return _side*_side; }
+        }
+    }
+
+    public class AreaComparer : IComparer<Shape>
+    {
+        public int Compare(Shape x, Shape y)
+        {
+            return x.Area.CompareTo(y.Area);
+        }
+    }
+
     [TestFixture]
     public class VarianceExamples
     {
+        [Test]
+        public void Shape_Example()
+        {
+            var shapes = new List<Shape>
+                             {
+                                 new Circle(10),
+                                 new Square(5),
+                                 new Circle(20)
+                             };
+            shapes.Sort(new AreaComparer());
+
+            var circles = new List<Circle>
+                             {
+                                 new Circle(10),
+                                 new Circle(20)
+                             };
+            circles.Sort(new AreaComparer());
+
+        }
+
         [Test]
         public void Going_To_General_From_Specific_Is_Covariant()
         {
