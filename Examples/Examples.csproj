@@ -51,6 +51,7 @@
     <Compile Include="CultureExample.cs" />
     <Compile Include="DateTimeExample.cs" />
     <Compile Include="DelegateExample.cs" />
+    <Compile Include="DynamicExamples.cs" />
     <Compile Include="EncodingExample.cs" />
     <Compile Include="ExtensionMethodExamples.cs" />
     <Compile Include="InheritanceExample.cs" />
